@@ -1,0 +1,138 @@
+﻿@model IEnumerable<GaoXiaoAsp.Models.LendingStatu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<link rel="stylesheet" href="../../Content/Calendar.css" />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div id="calendar"></div>
+
+<div class="calendar">
+    <div class="timeline">
+        <div class="spacer"></div>
+        <div class="time-marker">8 AM</div>
+        <div class="time-marker">9 AM</div>
+        <div class="time-marker">10 AM</div>
+        <div class="time-marker">11 AM</div>
+        <div class="time-marker">12 PM</div>
+        <div class="time-marker">1 PM</div>
+        <div class="time-marker">2 PM</div>
+        <div class="time-marker">3 PM</div>
+        <div class="time-marker">4 PM</div>
+        <div class="time-marker">5 PM</div>
+        <div class="time-marker">6 PM</div>
+        <div class="time-marker">7 PM</div>
+        <div class="time-marker">8 PM</div>
+        <div class="time-marker">9 PM</div>
+    </div>
+
+
+    <div class="days">
+        <div class="day">
+            <div class="date">
+                <p class="date-num">@DateTime.Now.ToString("dd")</p>
+                <p class="date-day">@DateTime.Now.ToString("ddd")</p>
+            </div>
+
+            <div class="events">
+                @foreach (var item in Model)
+                {
+                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.ToString("MM/dd/yyyy")))
+                    {
+                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
+                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
+                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
+                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="date">
+                <p class="date-num">@DateTime.Now.AddDays(1).ToString("dd")</p>
+                <p class="date-day">@DateTime.Now.AddDays(1).ToString("ddd")</p>
+            </div>
+            <div class="events">
+                @foreach (var item in Model)
+                {
+                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(1).ToString("MM/dd/yyyy")))
+                    {
+                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
+                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
+                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
+                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="date">
+                <p class="date-num">@DateTime.Now.AddDays(2).ToString("dd")</p>
+                <p class="date-day">@DateTime.Now.AddDays(2).ToString("ddd")</p>
+            </div>
+            <div class="events">
+                @foreach (var item in Model)
+                {
+                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(2).ToString("MM/dd/yyyy")))
+                    {
+                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
+                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
+                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
+                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="day">
+            <div class="date">
+                <p class="date-num">@DateTime.Now.AddDays(3).ToString("dd")</p>
+                <p class="date-day">@DateTime.Now.AddDays(3).ToString("ddd")</p>
+            </div>
+            <div class="events">
+                @foreach (var item in Model)
+                {
+                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(3).ToString("MM/dd/yyyy")))
+                    {
+                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
+                            <p class="title">@item.User.Name.Substring(0, 1) O O</p>
+                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
+                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="day">
+            <div class="date">
+                <p class="date-num">@DateTime.Now.AddDays(4).ToString("dd")</p>
+                <p class="date-day">@DateTime.Now.AddDays(4).ToString("ddd")</p>
+            </div>
+            <div class="events">
+                @foreach (var item in Model)
+                {
+                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(4).ToString("MM/dd/yyyy")))
+                    {
+                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
+                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
+                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
+                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

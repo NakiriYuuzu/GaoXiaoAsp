@@ -1,0 +1,72 @@
+﻿@model GaoXiaoAsp.Models.DiscussionRoom
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DiscussionRoom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Floors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Floors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomAccess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomAccess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxSize)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

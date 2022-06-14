@@ -1,0 +1,66 @@
+﻿@model GaoXiaoAsp.Models.DiscussionRoom
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DiscussionRoom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Floors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Floors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomAccess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomAccess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxSize)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Rid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

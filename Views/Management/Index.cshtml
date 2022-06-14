@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GaoXiaoAsp.Models.LendingStatu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscussionRoom1.RoomNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Librarian.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfPeople)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsExpired)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscussionRoom1.RoomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Librarian.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfPeople)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsExpired)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LendingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LendingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LendingID })
+        </td>
+    </tr>
+}
+
+</table>
