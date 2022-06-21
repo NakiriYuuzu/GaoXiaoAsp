@@ -1,138 +1,210 @@
-﻿@model IEnumerable<GaoXiaoAsp.Models.LendingStatu>
+﻿@using GaoXiaoAsp.Models
+@model IEnumerable<GaoXiaoAsp.Models.LendingStatu>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@if (TempData["SignIn"] != null)
+{
+    <script>alert("登入成功！");</script>
+}
 
-<link rel="stylesheet" href="../../Content/Calendar.css" />
+@if (TempData["createData"] != null)
+{
+    <script>alert("新增資料成功！");</script>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-<div id="calendar"></div>
+<link rel="stylesheet" href="~/Content/reminder.css"/>
 
-<div class="calendar">
-    <div class="timeline">
-        <div class="spacer"></div>
-        <div class="time-marker">8 AM</div>
-        <div class="time-marker">9 AM</div>
-        <div class="time-marker">10 AM</div>
-        <div class="time-marker">11 AM</div>
-        <div class="time-marker">12 PM</div>
-        <div class="time-marker">1 PM</div>
-        <div class="time-marker">2 PM</div>
-        <div class="time-marker">3 PM</div>
-        <div class="time-marker">4 PM</div>
-        <div class="time-marker">5 PM</div>
-        <div class="time-marker">6 PM</div>
-        <div class="time-marker">7 PM</div>
-        <div class="time-marker">8 PM</div>
-        <div class="time-marker">9 PM</div>
+<section class="py-5 mt-5">
+    <div class="container py-5">
+        <div class="row mb-4 mb-lg-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="fw-bold">R @TempData["room"].ToString()</h2>
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <div class="app-section-header">
+                    <p class="time" style="font-weight: 1000; font-size: 50px;">@DateTime.Now.Month 月</p>
+                    <div class="col col-1">
+                        <a href=@Url.Action("Create", "LendingStatus", new { id = @TempData["room"] }) class="btn btn-primary shadow" role="button">
+                            <svg class="fs-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"
+                                 fill="currentColor">
+                                <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-calendar">
+                    <div class="app-calendar-main">
+                        <div class="app-calendar-timeline">
+
+                            <div class="app-calendar-time">0800</div>
+                            <div class="app-calendar-time">0900</div>
+                            <div class="app-calendar-time">1000</div>
+                            <div class="app-calendar-time">1100</div>
+                            <div class="app-calendar-time">1200</div>
+                            <div class="app-calendar-time">1300</div>
+                            <div class="app-calendar-time">1400</div>
+                            <div class="app-calendar-time">1500</div>
+                            <div class="app-calendar-time">1600</div>
+                            <div class="app-calendar-time">1700</div>
+                            <div class="app-calendar-time">1800</div>
+                            <div class="app-calendar-time">1900</div>
+                            <div class="app-calendar-time">2000</div>
+                            <div class="app-calendar-time">2100</div>
+
+                        </div>
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.AddDays(1).ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.AddDays(1).DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(1).ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.AddDays(2).ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.AddDays(2).DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(2).ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.AddDays(3).ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.AddDays(3).DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(3).ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.AddDays(4).ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.AddDays(4).DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(4).ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.AddDays(5).ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.AddDays(5).DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(5).ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-calendar-days">
+                            <div class="app-calendar-monday">
+                                <div class="app-calendar-date">
+                                    <span class="app-calendar-day">@DateTime.Now.AddDays(6).ToString("dd")</span>
+                                    <span class="app-calendar-week">@DateTime.Now.AddDays(6).DayOfWeek.ToString().Substring(0, 3)</span>
+                                </div>
+                                <div class="app-calendar-events">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(6).ToString("MM/dd/yyyy")))
+                                        {
+                                            <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour notify">
+                                                @item.StartTime.ToString("HH ':' mm") <br/>
+                                                @item.EndTime.ToString("HH ':' mm")
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <div class="days">
-        <div class="day">
-            <div class="date">
-                <p class="date-num">@DateTime.Now.ToString("dd")</p>
-                <p class="date-day">@DateTime.Now.ToString("ddd")</p>
-            </div>
-
-            <div class="events">
-                @foreach (var item in Model)
-                {
-                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.ToString("MM/dd/yyyy")))
-                    {
-                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
-                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
-                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
-                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-
-        <div class="day">
-            <div class="date">
-                <p class="date-num">@DateTime.Now.AddDays(1).ToString("dd")</p>
-                <p class="date-day">@DateTime.Now.AddDays(1).ToString("ddd")</p>
-            </div>
-            <div class="events">
-                @foreach (var item in Model)
-                {
-                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(1).ToString("MM/dd/yyyy")))
-                    {
-                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
-                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
-                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
-                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-
-        <div class="day">
-            <div class="date">
-                <p class="date-num">@DateTime.Now.AddDays(2).ToString("dd")</p>
-                <p class="date-day">@DateTime.Now.AddDays(2).ToString("ddd")</p>
-            </div>
-            <div class="events">
-                @foreach (var item in Model)
-                {
-                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(2).ToString("MM/dd/yyyy")))
-                    {
-                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
-                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
-                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
-                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-
-        <div class="day">
-            <div class="date">
-                <p class="date-num">@DateTime.Now.AddDays(3).ToString("dd")</p>
-                <p class="date-day">@DateTime.Now.AddDays(3).ToString("ddd")</p>
-            </div>
-            <div class="events">
-                @foreach (var item in Model)
-                {
-                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(3).ToString("MM/dd/yyyy")))
-                    {
-                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
-                            <p class="title">@item.User.Name.Substring(0, 1) O O</p>
-                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
-                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-        <div class="day">
-            <div class="date">
-                <p class="date-num">@DateTime.Now.AddDays(4).ToString("dd")</p>
-                <p class="date-day">@DateTime.Now.AddDays(4).ToString("ddd")</p>
-            </div>
-            <div class="events">
-                @foreach (var item in Model)
-                {
-                    if (item.StartTime.ToString("MM/dd/yyyy").Equals(DateTime.Now.AddDays(4).ToString("MM/dd/yyyy")))
-                    {
-                        <div class="event start-@item.StartTime.Hour end-@item.EndTime.Hour">
-                            <p class="title">@item.User.Name.ToString().Substring(0, 1) O O</p>
-                            <p class="time">@item.StartTime.ToString("HH ':' mm") - @item.EndTime.ToString("HH ':' mm")</p>
-                            <p>@Html.ActionLink("Details", "Details", new {id = item.LendingID})</p>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-    </div>
-</div>
+</section>

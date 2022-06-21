@@ -18,7 +18,7 @@
                 <div>
                     <h5 class="fw-bold">討論室</h5>
                     <p class="text-muted mb-4">為支援教學及提供學術性研討，圖書館特於三樓設立七間討論室，六、八樓各設2間討論室，(總共十一間)，供本校教職員生使用。</p>
-                    <button class="btn btn-primary shadow" type="button">了解詳情</button>
+                    @Html.ActionLink("瞭解詳情", "RuleDiscussion", "Home", null, new {@class = "btn btn-primary shadow"})
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 <div>
                     <h5 class="fw-bold">團體視聽室<br></h5>
                     <p class="text-muted mb-4">為方便讀者觀賞館藏影音資源，圖書館特於2樓設立團體視聽座，供本校教職生、校友使用。</p>
-                    <button class="btn btn-primary shadow" type="button">了解詳情</button>
+                    @Html.ActionLink("瞭解詳情", "RuleAudio", "Home", null, new {@class = "btn btn-primary shadow"})
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <div>
                     <h5 class="fw-bold">研究小間</h5>
                     <p class="text-muted mb-4">為方便讀者使用館藏資料、從事學術研究，圖書館特於3、6、8三個樓層各設立4間研究小間(總共12間)，供本校教職員用。</p>
-                    <button class="btn btn-primary shadow" type="button">了解詳情</button>
+                    @Html.ActionLink("瞭解詳情", "RuleCarrel", "Home", null, new {@class = "btn btn-primary shadow"})
                 </div>
             </div>
         </div>

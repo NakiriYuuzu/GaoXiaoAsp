@@ -9,25 +9,32 @@ using GaoXiaoAsp.Models;
 
 namespace GaoXiaoAsp.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
-        LibraryEntity enity = new LibraryEntity();
         // GET: Home
-        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
         
-        [AllowAnonymous]
         public ActionResult Room()
         {
             return View();
         }
         
-        [AllowAnonymous]
         public ActionResult Rule()
+        {
+            return View();
+        }
+        public ActionResult RuleAudio()
+        {
+            return View();
+        }
+        public ActionResult RuleDiscussion()
+        {
+            return View();
+        }
+        public ActionResult RuleCarrel()
         {
             return View();
         }

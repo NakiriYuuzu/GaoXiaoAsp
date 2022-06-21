@@ -26,8 +26,7 @@ namespace GaoXiaoAsp.Controllers
         {
             bool isExist = entity.Users.Any(u => u.Email == signIn.Email && u.Password == signIn.Password);
             User user = entity.Users.FirstOrDefault(u => u.Email == signIn.Email && u.Password == signIn.Password);
-
-            Console.WriteLine(returnUrl);
+            
             if (isExist)
             {
                 FormsAuthentication.SetAuthCookie(user.Name, false);

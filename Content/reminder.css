@@ -1,0 +1,367 @@
+:root {
+  --numHours: 14;
+  --timeHeight: 70px;
+  --tagColor: #E8E5F2;
+}
+
+.app-calendar {
+  display: flex;
+  flex: 1;
+  padding: 0;
+  margin: 0 0 25px 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  position: relative;
+  overflow: auto;
+  background-color: var(--message-box-hover);
+  transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
+  gap: 10px;
+  grid-template-columns: auto 1fr;
+}
+
+.app-calendar-main {
+  display: flex;
+  gap: 15px;
+  grid-template-columns: auto 1fr;
+  /*margin-left: 0.4rem;*/
+}
+
+.app-calendar-timeline {
+  display: grid;
+  margin-top: 80px;
+  /*padding: 0px 10px 10px 0px;*/
+  justify-items: end;
+  grid-template-rows: repeat(var(--numHours), var(--timeHeight));
+}
+
+@media (max-width: 576px) {
+  .app-calendar-timeline {
+    display: grid;
+    margin-top: 59px;
+    /*padding: 0px 10px 10px 0px;*/
+    justify-items: end;
+    grid-template-rows: repeat(var(--numHours), var(--timeHeight));
+  }
+}
+
+.app-calendar-time {
+  width: 50px;
+  margin: 0;
+  text-align: end;
+}
+
+.app-calender-days {
+  display: flex;
+  grid-column: 2;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.app-calendar-date {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  margin: 5px 0 30px 55px;
+}
+
+@media (max-width: 576px) {
+  .app-calendar-date {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    margin: 0px 0 15px 0px;
+  }
+}
+
+.app-calendar-day {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+.app-calendar-week {
+  position: relative;
+  color: var(--secondary-color);
+}
+
+.app-calendar-events {
+  width: 150px;
+  max-width: 150px;
+  display: grid;
+  grid-template-rows: repeat(var(--numHours), var(--timeHeight));
+  border-radius: 20px;
+  background: var(--bs-primary-light);
+}
+
+@media (max-width: 576px) {
+  .app-calendar-events {
+    width: 60px;
+    max-width: 60px;
+    display: grid;
+    grid-template-rows: repeat(var(--numHours), var(--timeHeight));
+    border-radius: 20px;
+    background: var(--bs-primary-light);
+  }
+}
+
+.event {
+  /*width: 125px;*/
+  margin: 2px 0px 2px 0px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 550;
+  padding: 5px 5px 0px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  .event {
+    /*width: 125px;*/
+    margin: 2px 0px 2px 0px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 550;
+    padding: 5px 0px 0px 0px;
+  }
+}
+
+.notify {
+  background-color: var(--bs-primary);
+  color: #ffffff;
+}
+
+.app-calendar-event-title {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+.start-8 {
+  grid-row-start: 1;
+}
+
+.start-9 {
+  grid-row-start: 2;
+}
+
+.start-10 {
+  grid-row-start: 3;
+}
+
+.start-11 {
+  grid-row-start: 4;
+}
+
+.start-12 {
+  grid-row-start: 5;
+}
+
+.start-13 {
+  grid-row-start: 6;
+}
+
+.start-14 {
+  grid-row-start: 7;
+}
+
+.start-15 {
+  grid-row-start: 8;
+}
+
+.start-16 {
+  grid-row-start: 9;
+}
+
+.start-17 {
+  grid-row-start: 10;
+}
+
+.start-18 {
+  grid-row-start: 11;
+}
+
+.start-19 {
+  grid-row-start: 12;
+}
+
+.start-20 {
+  grid-row-start: 13;
+}
+
+.start-21 {
+  grid-row-start: 14;
+}
+
+.end-9 {
+  grid-row-end: 2;
+}
+
+.end-10 {
+  grid-row-end: 3;
+}
+
+.end-11 {
+  grid-row-end: 4;
+}
+
+.end-12 {
+  grid-row-end: 5;
+}
+
+.end-13 {
+  grid-row-end: 6;
+}
+
+.end-14 {
+  grid-row-end: 7;
+}
+
+.end-15 {
+  grid-row-end: 8;
+}
+
+.end-16 {
+  grid-row-end: 9;
+}
+
+.end-17 {
+  grid-row-end: 10;
+}
+
+.end-18 {
+  grid-row-end: 11;
+}
+
+.end-19 {
+  grid-row-end: 12;
+}
+
+.end-20 {
+  grid-row-end: 13;
+}
+
+.end-21 {
+  grid-row-end: 14;
+}
+
+.app-summit {
+}
+
+@media screen and (max-width: 980px) {
+  .app-calendar-time {
+    width: 50px;
+    display: grid;
+    justify-items: end;
+  }
+}
+
+.app-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  /*color: var(--main-color);*/
+}
+
+.app-section {
+  flex: 3;
+  background-color: var(--bs-primary-light);
+  border-radius: 30px;
+  padding: 32px 32px 0 32px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 576px) {
+  .app-section {
+    flex: 3;
+    background-color: var(--back-background-color);
+    border-radius: 32px;
+    padding: 5px 5px 5px 5px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.app-section-header p {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  opacity: 0.9;
+  margin: 0;
+  color: var(--bs-black-rgb);
+}
+
+.app-section-header .time {
+  font-size: 20px;
+}
+
+.app-message {
+  flex-shrink: 0;
+  padding-bottom: 32px;
+  background-color: var(--bs-primary-light);
+  margin-left: 24px;
+  flex: 1;
+  width: 100%;
+  border-radius: 30px;
+  position: relative;
+  overflow: auto;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
+}
+
+.app-message .app-messages-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  border: none;
+  background-color: var(--back-background-color);
+  color: var(--main-color);
+  display: none;
+}
+
+.app-container button, .app-container input, .app-container optgroup, .app-container select, .app-container textarea {
+  font-family: "Noto Serif TC", sans-serif;
+}
+
+.app-message .app-section-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 32px 24px 0 24px;
+  background-color: var(--front-background-color);
+}
+
+.notification {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 32px 24px 0 24px;
+  background-color: var(--app-container)!important;
+}
+
+.app-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  color: var(--main-color);
+}
+
+.app-content {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  padding: 16px 24px 24px 0;
+}
+

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using GaoXiaoAsp.Models;
 
 namespace GaoXiaoAsp.Controllers
@@ -18,28 +19,20 @@ namespace GaoXiaoAsp.Controllers
         // GET: LendingStatus
         public ActionResult Index(int? id)
         {
-            var lendingStatus = db.LendingStatus.Include(l => l.DiscussionRoom1).Include(l => l.Librarian).Include(l => l.User);
-            return View(lendingStatus.ToList());
-        }
+            string room = "R" + id;
+            TempData["room"] = id;
 
-        // GET: LendingStatus/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LendingStatu lendingStatu = db.LendingStatus.Find(id);
-            if (lendingStatu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lendingStatu);
+            var lendingStatus = db.LendingStatus.Where(x => x.DiscussionRoom1.RoomNumber == room).ToList();
+
+            return View(lendingStatus);
+            // var lendingStatus = db.LendingStatus.Include(l => l.DiscussionRoom1).Include(l => l.Librarian).Include(l => l.User);
+            // return View(lendingStatus.ToList());
         }
 
         // GET: LendingStatus/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            TempData["createRoom"] = id;
             ViewBag.DiscussionRoom = new SelectList(db.DiscussionRooms, "Rid", "RoomNumber");
             ViewBag.Lid = new SelectList(db.Librarians, "Lid", "Name");
             ViewBag.UserID = new SelectList(db.Users, "Uid", "Name");
@@ -51,18 +44,24 @@ namespace GaoXiaoAsp.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LendingID,UserID,DiscussionRoom,StartTime,EndTime,NumberOfPeople,Lid,IsExpired")] LendingStatu lendingStatu)
+        public ActionResult Create([Bind(Include = "LendingID,UserID,DiscussionRoom,StartTime,EndTime,NumberOfPeople,Lid,IsExpired")] LendingStatu lendingStatu, int? id)
         {
             if (ModelState.IsValid)
             {
+                var userID = db.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
+                var roomID = db.DiscussionRooms.FirstOrDefault(x => x.RoomNumber == "R" + id);
+
+                lendingStatu.LendingID = db.LendingStatus.Count() + 1;
+                lendingStatu.UserID = userID.Uid;
+                lendingStatu.DiscussionRoom = roomID.Rid;
+                Console.WriteLine(roomID.Rid);
+                lendingStatu.IsExpired = 0;
                 db.LendingStatus.Add(lendingStatu);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["createData"] = "success";
+                return Redirect("/LendingStatus/Index/" + id);
             }
 
-            ViewBag.DiscussionRoom = new SelectList(db.DiscussionRooms, "Rid", "RoomNumber", lendingStatu.DiscussionRoom);
-            ViewBag.Lid = new SelectList(db.Librarians, "Lid", "Name", lendingStatu.Lid);
-            ViewBag.UserID = new SelectList(db.Users, "Uid", "Name", lendingStatu.UserID);
             return View(lendingStatu);
         }
 

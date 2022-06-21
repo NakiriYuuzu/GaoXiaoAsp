@@ -99,6 +99,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Calendar.css" />
+    <Content Include="Content\reminder.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
@@ -154,9 +155,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\LendingStatus\Create.cshtml" />
-    <Content Include="Views\LendingStatus\Delete.cshtml" />
-    <Content Include="Views\LendingStatus\Details.cshtml" />
-    <Content Include="Views\LendingStatus\Edit.cshtml" />
     <Content Include="Views\LendingStatus\Index.cshtml" />
     <Content Include="Views\Home\Room.cshtml" />
     <Content Include="Views\Home\Rule.cshtml" />
@@ -174,6 +172,9 @@
     <Content Include="Views\DiscussionRooms\Edit.cshtml" />
     <Content Include="Views\DiscussionRooms\Index.cshtml" />
     <Content Include="Views\DiscussionRooms\RoomType.cshtml" />
+    <Content Include="Views\Home\RuleAudio.cshtml" />
+    <Content Include="Views\Home\RuleDiscussion.cshtml" />
+    <Content Include="Views\Home\RuleCarrel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
